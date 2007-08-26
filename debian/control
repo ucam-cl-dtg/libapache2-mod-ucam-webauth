@@ -1,0 +1,18 @@
+Source: libapache2-mod-ucam-webauth
+Section: web
+Priority: extra
+Maintainer: Malcolm Scott <debianpkg@malc.org.uk>
+Build-Depends: debhelper (>= 4.0.0), apache2-dev, libssl-dev
+Standards-Version: 3.6.1
+
+Package: libapache2-mod-ucam-webauth
+Depends: ${shlibs:Depends}, ${misc:Depends}, apache2
+Architecture: any
+Description: The mod_ucam_webauth module for Apache 2
+ mod_ucam_webauth is an Apache module implementing the University
+ of Cambridge's central web authentication service, "Raven".  The
+ system allows a user to log in once per session, and automatically
+ be authenticated on any number of protected websites.
+ .
+ This package contains the .so file which can be loaded into
+ Apache 2 and the current Raven server's public key(s).

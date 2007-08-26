@@ -1,0 +1,55 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -g
+endif
+
+build-apache2:
+	dh_testdir
+	apxs2 -c -lcrypto mod_ucam_webauth.c
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f mod_ucam_webauth.so mod_ucam_webauth.la mod_ucam_webauth.lo mod_ucam_webauth.slo
+	rm -rf .libs
+	dh_clean
+
+install: build-apache2
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+	dh_install
+
+
+# Build architecture-independent files here.
+binary-indep: install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: install
+	dh_testdir
+	dh_testroot
+	dh_installdebconf
+	dh_installdocs
+	dh_installchangelogs CHANGES
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: configure build clean binary-indep binary-arch binary install 

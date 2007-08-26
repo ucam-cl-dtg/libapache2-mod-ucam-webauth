@@ -1,0 +1,5 @@
+Template: libapache2-mod-ucam-webauth/serverdescr
+Type: string
+Description: Server description:
+ Set the description of this server. This will be displayed in the Raven page
+ asking users to authenticate.
