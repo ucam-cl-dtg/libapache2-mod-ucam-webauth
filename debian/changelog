@@ -1,3 +1,9 @@
+libapache2-mod-ucam-webauth (1.4.3-1) UNRELEASED; urgency=low
+
+  * [03342d4] Imported Upstream version 1.4.3
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 15 Dec 2011 11:24:59 +0000
+
 libapache2-mod-ucam-webauth (1.4.2-1) stable; urgency=low
 
   * New upstream version.
