@@ -1,5 +1,5 @@
 Source: libapache2-mod-ucam-webauth
-Section: web
+Section: httpd
 Priority: extra
 Maintainer: Daniel Thomas <drt24-debian@srcf.ucam.org>
 Build-Depends: debhelper (>= 6), apache2-dev, libssl-dev
