@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 4.0.0), apache2-dev, libssl-dev
 Standards-Version: 3.6.1
 
 Package: libapache2-mod-ucam-webauth
-Depends: ${shlibs:Depends}, ${misc:Depends}, apache2
+Depends: ${shlibs:Depends}, ${misc:Depends}, apache2, ucf
 Architecture: any
 Description: mod_ucam_webauth module for Apache 2
  mod_ucam_webauth is an Apache module implementing the University
