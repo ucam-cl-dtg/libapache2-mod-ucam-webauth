@@ -1,0 +1,1 @@
+For setups involving multiple virtual hosts which have separate domains of trust a different AACookieKey should be specified per virtual host or someone controlling one virtual host can use cookies for another virtual host.
