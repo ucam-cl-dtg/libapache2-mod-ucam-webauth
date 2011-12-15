@@ -14,19 +14,19 @@ libapache2-mod-ucam-webauth (1.2.2-7) stable; urgency=low
 
   * Aargh. Correct the same typo two lines further down.
 
- -- Malcolm Scott <mas90@localhost.localdomain>  Tue, 12 Jul 2005 19:48:43 +0100
+ -- Malcolm Scott <debianpkg@malc.org.uk>  Tue, 12 Jul 2005 19:48:43 +0100
 
 libapache2-mod-ucam-webauth (1.2.2-6) stable; urgency=low
 
   * Corrected typo in postinst script - read correct config file...
 
- -- Malcolm Scott <mas90@localhost.localdomain>  Tue, 12 Jul 2005 19:46:35 +0100
+ -- Malcolm Scott <debianpkg@malc.org.uk>  Tue, 12 Jul 2005 19:46:35 +0100
 
 libapache2-mod-ucam-webauth (1.2.2-5) stable; urgency=low
 
   * Corrected typo in config file - looks in correct place for keys now.
 
- -- Malcolm Scott <mas90@localhost.localdomain>  Tue, 12 Jul 2005 18:42:56 +0100
+ -- Malcolm Scott <debianpkg@malc.org.uk>  Tue, 12 Jul 2005 18:42:56 +0100
 
 libapache2-mod-ucam-webauth (1.2.2-4) stable; urgency=low
 
