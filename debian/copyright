@@ -2,7 +2,7 @@ This package was debianized by Malcolm Scott <debianpkg@malc.org.uk>.
 
 It was downloaded from http://raven.cam.ac.uk/project/
 
-Copyright (c) University of Cambridge 2004,2005
+Copyright (c) University of Cambridge 2004,2005,2007,2010
 
 This application agent is free software; you can redistribute it
 and/or modify it under the terms of the GNU Lesser General Public
@@ -18,3 +18,4 @@ You should have received a copy of the GNU Lesser General Public
 License along with this toolkit; if not, write to the Free Software
 Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
+The full licence is available in /usr/share/common-licenses/LGPL-2.1
