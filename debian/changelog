@@ -1,7 +1,8 @@
 libapache2-mod-ucam-webauth (1.4.3-1) UNRELEASED; urgency=low
 
   * [03342d4] Imported Upstream version 1.4.3
-  * [ddc0a38] Update copyright with additional years (2007,2010) and point to common-licenses
+  * [ddc0a38] Update copyright with additional years (2007,2010) and point to
+    common-licenses
   * [29a2cc1] Move to httpd section as per 2.4
   * [18ea760] Update to standards version 3.9.1 and add homepage to control
   * [c89205e] Check for ucam_webauth being enabled before disabling it.
