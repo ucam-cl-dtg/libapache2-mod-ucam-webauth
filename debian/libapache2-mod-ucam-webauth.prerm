@@ -28,7 +28,7 @@ reload_apache()
 
 case "$1" in
 remove)
-        if [ -e /etc/apache2/mods-enabled/suphp.load ]; then
+        if [ -e /etc/apache2/mods-enabled/ucam_webauth.load ]; then
                 a2dismod ucam_webauth >/dev/null || true
                 reload_apache
         fi
