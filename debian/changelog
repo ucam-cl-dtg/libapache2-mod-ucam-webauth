@@ -1,4 +1,4 @@
-libapache2-mod-ucam-webauth (1.4.3-1) UNRELEASED; urgency=low
+libapache2-mod-ucam-webauth (1.4.3-1) unstable; urgency=low
 
   * [03342d4] Imported Upstream version 1.4.3
   * [ddc0a38] Update copyright with additional years (2007,2010) and point to
@@ -10,7 +10,7 @@ libapache2-mod-ucam-webauth (1.4.3-1) UNRELEASED; urgency=low
   * [8213fe3] Add note to README.Debian about AACookieKey.
     This needs to be configured per vhost in some setups.
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 15 Dec 2011 15:49:40 +0000
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 29 Mar 2012 11:12:27 +0100
 
 libapache2-mod-ucam-webauth (1.4.2-1) stable; urgency=low
 
