@@ -1,4 +1,4 @@
-libapache2-mod-ucam-webauth (1.4.3-1) unstable; urgency=low
+libapache2-mod-ucam-webauth (1.4.3-2) precise; urgency=low
 
   * [03342d4] Imported Upstream version 1.4.3
   * [ddc0a38] Update copyright with additional years (2007,2010) and point to
