@@ -1,3 +1,16 @@
+libapache2-mod-ucam-webauth (1.4.3-3) precise; urgency=low
+
+  * [5e122b8] Specify default serverdescr config value.
+    If serverdescr is empty due to automatic install of the
+    package then we need to specify a default
+  * [1007b6e] Switch to machine readable debian/copyright
+  * [5919a7b] Bump Standards-Version to 3.9.3 - switched to
+    machine readable debian/copyright
+  * [6915e84] Add debian/source/format = 3.0 (quilt)
+  * [6f916d1] Add patch fixing FSF address
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 23 Aug 2012 18:07:51 +0100
+
 libapache2-mod-ucam-webauth (1.4.3-2) precise; urgency=low
 
   * [03342d4] Imported Upstream version 1.4.3
