@@ -19,8 +19,15 @@ set -e
 
 . /usr/share/debconf/confmodule
 
-db_get libapache2-mod-ucam-webauth/serverdescr ; serverdescr="$RET";
 # db_stop called at the end of the script as ucf will start it again
+
+# If install happens non-interactively then serverdescr can still not be set
+# so we must also specify a default
+db_get libapache2-mod-ucam-webauth/serverdescr ; serverdescr="$RET";
+if [ -z "$serverdescr" ]
+  then
+    serverdescr="Server description"
+fi
 
 reload_apache()
 {
