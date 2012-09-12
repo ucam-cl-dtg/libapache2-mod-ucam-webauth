@@ -1085,29 +1085,13 @@ get_url(request_rec *r)
      depending on the presence (or otherwise) of ServerName and/or
      Port and/or Listen directive. Needs testing. */ 
 
-  char *url, *result;
+  char *url;
   apr_uri_t uri;
 
   url = ap_construct_url(r->pool, r->unparsed_uri, r);
   APACHE_LOG1(APLOG_DEBUG, "get_url: raw url = %s", url);
 
-  /* ap_construct_url honours UseCannonicalName but we really don't
-     want that so we re-parse this result and override the hostname
-     component with what we know we are really called
-  */
-
-#ifdef APACHE1_3
-  if (apr_uri_parse(r->pool, url, &uri) != HTTP_OK)
-    APACHE_LOG0(APLOG_CRIT, "Failed to parse own URL");
-#else
-  if (apr_uri_parse(r->pool, url, &uri))
-    APACHE_LOG0(APLOG_CRIT, "Failed to parse own URL");
-#endif
-  uri.hostname = r->server->server_hostname;
-  result = apr_uri_unparse(r->pool, &uri, (unsigned)0);
-
-  APACHE_LOG1(APLOG_DEBUG, "get_url: fixed url = %s", result);
-  return result;
+  return url;
 
 }
 
@@ -2565,31 +2549,6 @@ webauth_authn(request_rec *r)
     (APLOG_INFO, "** mod_ucam_webauth (%s) authn handler started for %s", 
      VERSION, r->uri);
 
-  /* If the hostname the user used (as reported by the 'Host' header)
-     doesn't match the configured hostname for this server then we are
-     going to have all sorts of problems with cookies and redirects,
-     so fix it (with a redirect) now. */
-
-  host = apr_pstrdup(r->pool,apr_table_get(r->headers_in, "Host"));
-  if (host != NULL) {
-    colon = strchr(host,':');
-    if (colon != NULL)
-      *colon = '\0';
-    if (r->server->server_hostname && 
-	strcasecmp(r->server->server_hostname,host)) {
-      colon = strchr(host,':');
-      if (colon != NULL)
-	*colon = '\0'; 
-      APACHE_LOG2
-	(APLOG_DEBUG,"Browser supplied hostname (%s) does not match "
-	 "configured hostname (%s) - redirecting",
-	 host, r->server->server_hostname);
-      apr_table_set(r->headers_out, "Location", get_url(r));
-      return (r->method_number == M_GET) ? 
-	HTTP_MOVED_TEMPORARILY : HTTP_SEE_OTHER;
-    }
-  }
-  
   c = (mod_ucam_webauth_cfg *) 
     ap_get_module_config(r->per_dir_config, &ucam_webauth_module);
   c = apply_config_defaults(r,c);
