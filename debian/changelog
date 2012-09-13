@@ -1,3 +1,9 @@
+libapache2-mod-ucam-webauth (1.4.3-4) precise; urgency=low
+
+  * [d9e107d] Add Malcolm Scott's patch to remove the use of UseCanonicalName
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 13 Sep 2012 12:26:04 +0100
+
 libapache2-mod-ucam-webauth (1.4.3-3) precise; urgency=low
 
   * [5e122b8] Specify default serverdescr config value.
