@@ -1,3 +1,9 @@
+libapache2-mod-ucam-webauth (1.4.4-1) precise; urgency=low
+
+  * [1bab957] Imported Upstream version 1.4.4
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 16:20:31 +0100
+
 libapache2-mod-ucam-webauth (1.4.3-4) precise; urgency=low
 
   * [d9e107d] Add Malcolm Scott's patch to remove the use of UseCanonicalName
