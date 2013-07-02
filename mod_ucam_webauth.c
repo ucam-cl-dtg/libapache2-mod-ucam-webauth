@@ -28,7 +28,7 @@
 
 */
 
-#define VERSION "1.4.3"
+#define VERSION "1.4.4"
 
 /*
 MODULE-DEFINITION-START
@@ -66,6 +66,10 @@ MODULE-DEFINITION-END
 
 #if defined APACHE_RELEASE && APACHE_RELEASE < 20000000
 #define APACHE1_3
+#endif
+
+#if defined( AP_RELEASE_H ) && AP_SERVER_MAJORVERSION_NUMBER == 2 && AP_SERVER_MINORVERSION_NUMBER >=4
+#define APACHE2_4
 #endif
 
 #ifdef APACHE1_3
@@ -1514,7 +1518,11 @@ dump_config(request_rec *r,
 
   char *msg;
 
+#ifdef APACHE2_4
+  if (r->server->log.level >= APLOG_DEBUG) {
+#else
   if (r->server->loglevel >= APLOG_DEBUG) {
+#endif
 
     APACHE_LOG0(APLOG_DEBUG, "Config dump:");
     
@@ -2283,7 +2291,8 @@ validate_response(request_rec *r,
   /* first-hand authentication if ForceInteract */
   
   if (c->force_interact == 1 && 
-      apr_table_get(response_ticket, "auth") == "") {
+      NULL != apr_table_get(response_ticket, "auth") &&
+      strlen(apr_table_get(response_ticket, "auth")) == 0 ) {
     msg = "Non first-hand authentication under ForceInteract";
     status = "600";
     goto FINISHED;
