@@ -1,3 +1,9 @@
+libapache2-mod-ucam-webauth (1.4.4-1raring1) raring; urgency=low
+
+  * Rebuild for raring
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 17:22:55 +0100
+
 libapache2-mod-ucam-webauth (1.4.4-1quantal1) quantal; urgency=low
 
   * Rebuild for quantal
