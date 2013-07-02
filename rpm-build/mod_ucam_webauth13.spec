@@ -13,13 +13,19 @@
 %if %((rpm --quiet -q suse-release || rpm --quiet -q sles-release) && echo 1 || echo 0) == 1
   %define dist suse
   %define keysdir /etc/httpd/webauth_keys
+  %define apxs %{_sbindir}/apxs2
 %endif
 
-%define apache_libexecdir %(/usr/sbin/apxs -q LIBEXECDIR)
+%if %(test -e /etc/debian_version && echo 1 || echo 0) == 1
+  %define dist debian
+  %define apxs %{_bindir}/apxs
+%endif
+
+%define apache_libexecdir %(%{apxs} -q LIBEXECDIR)
 
 Summary: University of Cambridge Web Authentication system agent for Apache 1.3
 Name: mod_ucam_webauth13
-Version: 1.4.3
+Version: 1.4.4
 Release: 1
 Group: System Environment/Daemons
 Vendor: University of Cambridge Computing Service
