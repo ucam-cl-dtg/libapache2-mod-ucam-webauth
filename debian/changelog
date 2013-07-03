@@ -1,20 +1,8 @@
-libapache2-mod-ucam-webauth (1.4.4-1saucy1) saucy; urgency=low
+libapache2-mod-ucam-webauth (1.4.4-2) quantal; urgency=low
 
-  * Rebuild for saucy
+  * [1e65696] Build-Depend on apache2-dev | apache2-threaded-dev as in quantal apache2-threaded-dev no longer Provides apache2-dev
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 17:24:50 +0100
-
-libapache2-mod-ucam-webauth (1.4.4-1raring1) raring; urgency=low
-
-  * Rebuild for raring
-
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 17:22:55 +0100
-
-libapache2-mod-ucam-webauth (1.4.4-1quantal1) quantal; urgency=low
-
-  * Rebuild for quantal
-
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 17:20:18 +0100
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Wed, 03 Jul 2013 10:05:05 +0100
 
 libapache2-mod-ucam-webauth (1.4.4-1) precise; urgency=low
 
