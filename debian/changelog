@@ -1,3 +1,9 @@
+libapache2-mod-ucam-webauth (2.0.0-1quantal1) quantal; urgency=low
+
+  * Rebuild for Quantal
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Mon, 29 Jul 2013 12:46:21 +0100
+
 libapache2-mod-ucam-webauth (2.0.0-1) precise; urgency=low
 
   * [9201a42] Imported Upstream version 2.0.0
