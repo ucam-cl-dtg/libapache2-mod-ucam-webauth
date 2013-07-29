@@ -1,8 +1,8 @@
-libapache2-mod-ucam-webauth (2.0.0-1raring1) raring; urgency=low
+libapache2-mod-ucam-webauth (2.0.0-1saucy1) saucy; urgency=low
 
-  * Rebuild for raring
+  * Rebuild for Saucy
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Mon, 29 Jul 2013 12:51:08 +0100
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Mon, 29 Jul 2013 12:52:44 +0100
 
 libapache2-mod-ucam-webauth (2.0.0-1) precise; urgency=low
 
