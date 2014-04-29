@@ -10,9 +10,13 @@ ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
 	CFLAGS += -g
 endif
 
-build-apache2:
+build: build-arch
+
+build-arch:
 	dh_testdir
 	apxs2 -c -lcrypto mod_ucam_webauth.c
+
+build-indep:
 
 clean:
 	dh_testdir
@@ -21,7 +25,7 @@ clean:
 	rm -rf .libs
 	dh_clean
 
-install: build-apache2
+install: build
 	dh_testdir
 	dh_testroot
 	dh_prep
