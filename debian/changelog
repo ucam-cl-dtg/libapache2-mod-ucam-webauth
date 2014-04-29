@@ -1,8 +1,12 @@
-libapache2-mod-ucam-webauth (2.0.0-1saucy1) saucy; urgency=low
+libapache2-mod-ucam-webauth (2.0.0-2) saucy; urgency=low
 
-  * Rebuild for Saucy
+  * [c0d91ab] Alter targets in rules file per new debian policy
+    - add build, build-arch and build-indep
+  * [262942f] Update Standards-Version to 3.9.5 and add Vcs-* fields
+  * [9397208] Fix lintian warnings about apache using
+    apache2-maintscript-helper
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Mon, 29 Jul 2013 12:52:44 +0100
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 29 Apr 2014 12:10:52 +0100
 
 libapache2-mod-ucam-webauth (2.0.0-1) precise; urgency=low
 
