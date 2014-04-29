@@ -16,21 +16,13 @@ set -e
 # for details, see http://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
-reload_apache()
-{
-        if apache2ctl configtest 2>/dev/null; then
-                invoke-rc.d apache2 force-reload || true
-        else
-                echo "Your apache2 configuration is broken, so we're not restarting it for you."
-        fi
-}
+. /usr/share/apache2/apache2-maintscript-helper
 
 
 case "$1" in
 remove)
-        if [ -e /etc/apache2/mods-enabled/ucam_webauth.load ]; then
-                a2dismod ucam_webauth >/dev/null || true
-                reload_apache
+        if apache2_has_module ucam_webauth ; then
+                apache2_invoke dismod ucam_webauth
         fi
         ;;
 

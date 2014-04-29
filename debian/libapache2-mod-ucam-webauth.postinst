@@ -29,14 +29,7 @@ if [ -z "$serverdescr" ]
     serverdescr="Server description"
 fi
 
-reload_apache()
-{
-	if apache2ctl configtest 2>/dev/null; then
-		invoke-rc.d apache2 force-reload || true
-	else
-		echo "Your apache2 configuration is broken, so we're not restarting it for you."
-	fi
-}
+. /usr/share/apache2/apache2-maintscript-helper
 
 
 case "$1" in
@@ -71,15 +64,12 @@ EOF
 
 	# Reload the module on upgrade if enabled
 	if [ -n "$2" ]; then
-		if [ -e /etc/apache2/mods-enabled/ucam_webauth.load ]; then
-			reload_apache
+		if apache2_has_module ucam_webauth; then
+			apache2_reload
 		fi
 	else 
 		# Enable the module
-		if [ -e /etc/apache2/apache2.conf ]; then
-			a2enmod ucam_webauth >/dev/null || true
-			reload_apache
-		fi
+		apache2_invoke enmod ucam_webauth
 	fi
 	;;
 
