@@ -28,7 +28,7 @@
 
 */
 
-#define VERSION "2.0.0"
+#define VERSION "2.0.1"
 
 /*
 MODULE-DEFINITION-START
@@ -160,6 +160,7 @@ APLOG_USE_MODULE(ucam_webauth);
 #define DEFAULT_cookie_name        "Ucam-WebAuth-Session"
 #define DEFAULT_cookie_path        "/"
 #define DEFAULT_cookie_domain      NULL
+#define DEFAULT_cookie_force_secure 0
 #define DEFAULT_force_interact     0
 #define DEFAULT_refuse_interact    0
 #define DEFAULT_fail               0
@@ -192,6 +193,7 @@ typedef struct {
   char *cookie_name;
   char *cookie_path;
   char *cookie_domain;
+  int   cookie_force_secure;
   int   force_interact;
   int   refuse_interact;
   int   fail;
@@ -763,7 +765,9 @@ set_cookie(request_rec *r,
 			 c->cookie_domain, NULL);
   }
   
-  if (using_https(r)) {
+  cookie = apr_pstrcat(r->pool, cookie, "; HttpOnly", NULL);
+
+  if (using_https(r) || c->cookie_force_secure) {
     cookie = apr_pstrcat(r->pool, cookie, "; secure", NULL);
   }
   
@@ -1544,6 +1548,7 @@ webauth_create_dir_config(apr_pool_t *p,
   cfg->cookie_name = NULL;
   cfg->cookie_path = NULL;
   cfg->cookie_domain = NULL;
+  cfg->cookie_force_secure =-1;
   cfg->force_interact = -1;
   cfg->refuse_interact = -1;
   cfg->fail = -1;
@@ -1575,10 +1580,10 @@ webauth_merge_dir_config(apr_pool_t *p,
   mod_ucam_webauth_cfg *merged = 
     (mod_ucam_webauth_cfg *)apr_pcalloc(p, sizeof(mod_ucam_webauth_cfg)); 
 
-  log_p_or_rerror(NULL,p,"Merging configs. Base then new follow");
-
   mod_ucam_webauth_cfg *base = (mod_ucam_webauth_cfg *)bconf;
   mod_ucam_webauth_cfg *new  = (mod_ucam_webauth_cfg *)nconf;
+
+  log_p_or_rerror(NULL,p,"Merging configs. Base then new follow");
 
   dump_config(NULL,p,base);
   dump_config(NULL,p,new);
@@ -1611,6 +1616,8 @@ webauth_merge_dir_config(apr_pool_t *p,
     new->cookie_path : base->cookie_path;
   merged->cookie_domain = new->cookie_domain != NULL ? 
     new->cookie_domain : base->cookie_domain;
+  merged->cookie_force_secure = new->cookie_force_secure != -1 ?
+    new->cookie_force_secure : base->cookie_force_secure;
   merged->force_interact = new->force_interact != -1 ? 
     new->force_interact : base->force_interact;
   merged->refuse_interact = new->refuse_interact != -1 ? 
@@ -1687,6 +1694,8 @@ apply_config_defaults(request_rec *r,
       apr_pstrdup(r->pool,DEFAULT_cookie_path);
   n->cookie_domain = c->cookie_domain != NULL ? c->cookie_domain : 
       DEFAULT_cookie_domain;
+  n->cookie_force_secure = c->cookie_force_secure != -1 ? c->cookie_force_secure :
+    DEFAULT_cookie_force_secure;
   n->force_interact = c->force_interact != -1 ? c->force_interact :
       DEFAULT_force_interact;  
   n->refuse_interact = c->refuse_interact != -1 ? c->refuse_interact :
@@ -1844,6 +1853,9 @@ dump_config(request_rec *r, apr_pool_t *p,
     log_p_or_rerror(r,p,"  AACookieDomain       = %s",
 		(c->cookie_domain == NULL ? "NULL" : c->cookie_domain));
     
+    log_p_or_rerror(r,p,"  AACookieForceSecure  = %d",
+		    c->cookie_force_secure);
+
     log_p_or_rerror(r,p,"  AAForceInteract      = %d",
 		c->force_interact);
     
@@ -2555,8 +2567,8 @@ validate_response(request_rec *r,
 
 {
 
-  char *cookie_str, *new_cookie_str, *msg;
-  const char *status, *url;
+  char *cookie_str, *new_cookie_str, *msg; 
+  const char *status, *url, *kid;
   int life, response_ticket_life, sig_verify_result, ver_in_response;
   apr_table_t *cookie;
   apr_time_t issue, now;
@@ -2668,6 +2680,14 @@ validate_response(request_rec *r,
 		  c->required_ptags);
       msg = apr_pstrdup(r->pool,"Required ptags not found");
       status = "601";
+      goto FINISHED;
+    }
+
+  /* kid (key_id) must be filename suffix */
+  kid =apr_table_get(response_ticket, "kid");
+  if (strchr(kid, '/')) {
+      msg = apr_psprintf(r->pool,"WLS response contains invalid key ID (contains '/') %s", kid);
+      status = "600";
       goto FINISHED;
     }
 
@@ -3254,6 +3274,14 @@ static const command_rec webauth_commands[] = {
 		(mod_ucam_webauth_cfg,cookie_domain),
 		RSRC_CONF | OR_AUTHCFG,
 		"the domain setting for session cookie"),
+
+  AP_INIT_FLAG("AACookieForceSecure",
+	       ap_set_flag_slot,
+	       (void *)APR_OFFSETOF
+	       (mod_ucam_webauth_cfg,cookie_force_secure),
+	       RSRC_CONF | OR_AUTHCFG,
+	       "either 'on' or 'off'; "
+	       "on sets the 'secure' attribute in http cookies"),
   
   AP_INIT_FLAG("AAForceInteract", 
 	       ap_set_flag_slot, 
