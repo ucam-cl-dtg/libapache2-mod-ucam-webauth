@@ -1,3 +1,9 @@
+libapache2-mod-ucam-webauth (2.0.1-1) saucy; urgency=low
+
+  * [6c14482] Imported Upstream version 2.0.1
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Wed, 30 Apr 2014 12:36:52 +0100
+
 libapache2-mod-ucam-webauth (2.0.0-2) saucy; urgency=low
 
   * [c0d91ab] Alter targets in rules file per new debian policy
