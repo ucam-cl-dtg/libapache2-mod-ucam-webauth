@@ -1,3 +1,10 @@
+libapache2-mod-ucam-webauth (2.0.2-1) utopic; urgency=medium
+
+  * [2474b44] Imported Upstream version 2.0.2
+  * Includes fix for security vulnerability in key id validation
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 12 Mar 2015 16:24:31 +0000
+
 libapache2-mod-ucam-webauth (2.0.1-1utopic1) utopic; urgency=low
 
   * Rebuild for utopic
