@@ -1,8 +1,8 @@
-libapache2-mod-ucam-webauth (2.0.2-1trusty) trusty; urgency=low
+libapache2-mod-ucam-webauth (2.0.2-1precise) precise; urgency=medium
 
-  * Rebuild for trusty
+  * Rebuild for precise
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 12 Mar 2015 17:05:49 +0000
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 12 Mar 2015 17:42:22 +0000
 
 libapache2-mod-ucam-webauth (2.0.2-1) utopic; urgency=medium
 
