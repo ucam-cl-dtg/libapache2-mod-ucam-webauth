@@ -29,8 +29,6 @@ if [ -z "$serverdescr" ]
     serverdescr="Server description"
 fi
 
-. /usr/share/apache2/apache2-maintscript-helper
-
 
 case "$1" in
 configure|reconfigure)
@@ -63,13 +61,25 @@ EOF
 	rm -f "$newconf"
 
 	# Reload the module on upgrade if enabled
-	if [ -n "$2" ]; then
-		if apache2_has_module ucam_webauth; then
-			apache2_reload
+	if [ -e /usr/share/apache2/apache2-maintscript-helper ]
+	then
+		. /usr/share/apache2/apache2-maintscript-helper
+
+		if [ -n "$2" ]; then
+			if apache2_has_module ucam_webauth; then
+				apache2_reload
+			fi
+		else
+			# Enable the module
+			apache2_invoke enmod ucam_webauth
 		fi
-	else 
-		# Enable the module
-		apache2_invoke enmod ucam_webauth
+	else
+		# Old Apache2 package; approximately emulate apache2-maintscript-helper
+
+		if [ ! -n "$2" ]; then
+			/usr/sbin/a2enmod ucam_webauth || true
+		fi
+		/usr/sbin/apache2ctl restart || true
 	fi
 	;;
 
