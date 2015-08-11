@@ -1,3 +1,12 @@
+libapache2-mod-ucam-webauth (2.0.2-1precise1) precise; urgency=medium
+
+  * Rebuild for precise
+  * Remove dependency on apache2-api-20120211 which doesn't exist on precise
+  * Work around nonexistence of apache2-maintscript-helper which also doesn't
+    exist on precise
+
+ -- Malcolm Scott <debianpkg@malc.org.uk>  Mon, 10 Aug 2015 16:37:16 +0100
+
 libapache2-mod-ucam-webauth (2.0.2-1vivid) vivid; urgency=medium
 
   * Rebuild for vivid

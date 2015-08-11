@@ -16,23 +16,29 @@ set -e
 # for details, see http://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
-. /usr/share/apache2/apache2-maintscript-helper
-
 
 case "$1" in
 remove)
-        if apache2_has_module ucam_webauth ; then
-                apache2_invoke dismod ucam_webauth
-        fi
-        ;;
+	if [ -e /usr/share/apache2/apache2-maintscript-helper ]; then
+		. /usr/share/apache2/apache2-maintscript-helper
+
+		if apache2_has_module ucam_webauth ; then
+			apache2_invoke dismod ucam_webauth
+		fi
+	else
+		# Old Apache2 package
+		/usr/sbin/a2dismod ucam_webauth || true
+		/usr/sbin/apache2ctl restart || true
+	fi
+	;;
 
 upgrade|failed-upgrade|deconfigure)
-        ;;
+	;;
 
 *)
-        echo "prerm called with unknown argument \`$1'" >&2
-        exit 1
-        ;;
+	echo "prerm called with unknown argument \`$1'" >&2
+	exit 1
+	;;
 
 esac
 
