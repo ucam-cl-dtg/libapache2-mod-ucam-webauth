@@ -1,8 +1,8 @@
-libapache2-mod-ucam-webauth (2.0.2-1vivid) vivid; urgency=medium
+libapache2-mod-ucam-webauth (2.0.2-1wily) wily; urgency=low
 
-  * Rebuild for vivid
+  * Rebuild for Wily
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Wed, 29 Apr 2015 13:00:30 +0100
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 22 Oct 2015 15:16:02 +0100
 
 libapache2-mod-ucam-webauth (2.0.2-1) utopic; urgency=medium
 
