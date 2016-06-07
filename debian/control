@@ -9,7 +9,7 @@ Vcs-Browser: https://github.com/ucam-cl-dtg/libapache2-mod-ucam-webauth
 Vcs-Git: https://github.com/ucam-cl-dtg/libapache2-mod-ucam-webauth.git
 
 Package: libapache2-mod-ucam-webauth
-Depends: ${shlibs:Depends}, ${misc:Depends}, apache2, ucf (>=0.28), apache2-api-20120211
+Depends: ${shlibs:Depends}, ${misc:Depends}, apache2, ucf (>=0.28)
 Architecture: any
 Description: mod_ucam_webauth module for Apache 2
  mod_ucam_webauth is an Apache module implementing the University
