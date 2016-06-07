@@ -1,8 +1,8 @@
-libapache2-mod-ucam-webauth (2.0.2-1wily) wily; urgency=low
+libapache2-mod-ucam-webauth (2.0.2-1xenial) xenial; urgency=medium
 
-  * Rebuild for Wily
+  * Rebuild for Xenial
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 22 Oct 2015 15:16:02 +0100
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 07 Jun 2016 16:54:09 +0100
 
 libapache2-mod-ucam-webauth (2.0.2-1) utopic; urgency=medium
 
